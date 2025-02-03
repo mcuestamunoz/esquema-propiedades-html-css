@@ -1,0 +1,295 @@
+/* Selectores Básicos
+- Universal: * { ... }
+- Elemento: p { ... }
+- Clase: .mi-clase { ... }
+- ID: #mi-id { ... }
+- Selectores Anidados y Combinadores */
+
+/* Descendiente 
+.contenedor p { ... }
+/* Hijo directo 
+.contenedor > p { ... }
+/* Hermano adyacente 
+h2 + p { ... }
+/* Hermano general 
+h2 ~ p { ... }
+
+/* Pseudo-clases y Pseudo-elementos */
+a:hover { color: red; }
+input:focus { border-color: blue; }
+li:nth-child(odd) { background: #f4f4f4; }
+
+p::first-letter { font-size: 200%; }
+p::after { content: " ★"; }
+
+/* Propiedades Comunes */
+    /* Colores y fondos */
+
+color: black;
+background-color: #f4f4
+background-image: url('fondo.jpg');
+background-size: cover;
+
+    /* Tipografía */
+
+font-family: Arial, sans-serif;
+font-size: 16px;
+font-weight: bold;
+line-height: 1.5;
+text-align: center;
+text-decoration: none;
+
+    /* Espaciados y bordes */
+
+margin: 10px; /* margen externo */
+padding: 15px; /* espacio interno */
+border: 1px solid #ccc
+border-radius: 5px;
+
+    /* Dimensiones */
+
+width: 100%; /* ancho completo */
+max-width: 1200px;
+height: auto;
+    
+
+    /* Posicionamiento */
+
+position: static | relative | absolute | fixed | sticky;
+top: 0;
+right: 0;
+bottom: 0;
+left: 0;
+z-index: 10;
+    
+     /* Display */
+
+display: block | inline | inline-block | none;
+
+     /* Transiciones y animaciones */
+
+transition: all 0.3s ease;
+animation: miAnimacion 2s infinite;
+@keyframes miAnimacion {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+/* FLEXBOX */
+
+/* Aplicar Flexbox al Contenedor*/
+
+.flex-container {
+    display: flex; /* o inline-flex */
+    flex-direction: row; /* row | row-reverse | column | column-reverse */
+    flex-wrap: nowrap; /* nowrap | wrap | wrap-reverse */
+    justify-content: flex-start; /* flex-start | flex-end | center | space-between | space-around | space-evenly */
+    align-items: stretch; /* stretch | flex-start | flex-end | center | baseline */
+    align-content: stretch; /* solo cuando hay varias líneas: flex-start, flex-end, center, space-between, space-around, stretch */
+  }
+  
+/* Propiedades de los ítems Flexibles*/
+
+.flex-item {
+    order: 0; /* Cambia el orden visual (valor por defecto 0) */
+    flex-grow: 1; /* Permite crecer para ocupar el espacio extra */
+    flex-shrink: 1; /* Permite encoger si es necesario */
+    flex-basis: auto; /* Tamaño inicial antes de distribuir el espacio extra */
+    /* Atajo: flex: [flex-grow] [flex-shrink] [flex-basis]; */
+    /* Ejemplo: */
+    flex: 1 1 auto;
+    align-self: auto; /* Anula align-items en un ítem específico: auto, flex-start, flex-end, center, baseline, stretch */
+  }
+
+/* Ejemplo práctico */
+/* HTML */
+<div class="flex-container">
+  <div class="flex-item">Item 1</div>
+  <div class="flex-item">Item 2</div>
+  <div class="flex-item">Item 3</div>
+</div>
+/* CSS */
+.flex-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+  }
+.flex-item {
+    flex: 1 1 30%; /* Cada ítem ocupa aproximadamente el 30% del contenedor */
+    margin: 10px;
+    background-color: #e2e2e2;
+    padding: 20px;
+    text-align: center;
+  }
+  
+
+/* Resumen Rápido de Propiedades Flex
+Contenedor Flex:
+
+display: flex;
+flex-direction
+flex-wrap
+justify-content
+align-items
+align-content
+Ítems Flex:
+
+order
+flex-grow
+flex-shrink
+flex-basis
+flex (shorthand)
+align-self
+*/
+
+
+/* Contenedor Flex mas detallado */
+.flex-container {
+    display: flex;               /* Activa Flexbox */
+    flex-direction: row;         /* Distribuye los ítems en fila */
+    flex-wrap: wrap;             /* Permite que se ajusten en varias líneas si es necesario */
+    justify-content: space-between; /* Espacio equitativo entre ítems */
+    align-items: center;         /* Centra verticalmente los ítems */
+    align-content: stretch;      /* Estira las líneas en el contenedor (si hay varias filas) */
+  }
+  
+  /* Ítems Flex */
+  .flex-item {
+    order: 0;                    /* Orden natural */
+    flex-grow: 1;                /* Crece para ocupar el espacio extra */
+    flex-shrink: 1;              /* Se encoge si es necesario */
+    flex-basis: 30%;             /* Tamaño base del 30% del contenedor */
+    /* Alternativamente, se puede usar la propiedad abreviada: */
+    /* flex: 1 1 30%; */
+    align-self: auto;            /* Hereda la alineación del contenedor */
+    padding: 20px;
+    background-color: #e2e2e2;
+    margin: 10px;
+  }
+
+/* 
+Propiedades del Contenedor Flex
+
+Estas propiedades se aplican al elemento que actúa como contenedor flexible (por ejemplo, un <div> que envuelve a los elementos hijos).
+
+1. display: flex; y display: inline-flex;
+
+Función:
+Activa el modo Flexbox para el contenedor.
+Diferencia:
+flex: El contenedor se comporta como un bloque (block-level).
+inline-flex: El contenedor se comporta como un elemento en línea (inline-level), pero sus hijos siguen siendo flexibles.
+
+2. flex-direction
+
+Valores: row (por defecto), row-reverse, column, column-reverse
+Función:
+Define la dirección en la que se colocan los elementos hijos (el eje principal).
+Explicación de valores:
+row: Los elementos se distribuyen en una fila de izquierda a derecha.
+row-reverse: La fila se invierte; los elementos se distribuyen de derecha a izquierda.
+column: Los elementos se distribuyen en una columna de arriba a abajo.
+column-reverse: La columna se invierte; los elementos se distribuyen de abajo a arriba.
+
+3. flex-wrap
+
+Valores: nowrap (por defecto), wrap, wrap-reverse
+Función:
+Permite o no que los elementos hijos se distribuyan en varias líneas cuando no caben en una sola.
+Explicación de valores:
+nowrap: Todos los elementos se mantienen en una única línea, pudiendo comprimir su tamaño si es necesario.
+wrap: Los elementos se mueven a una nueva línea cuando no hay suficiente espacio en la línea actual.
+wrap-reverse: Similar a wrap, pero las líneas se apilan en orden inverso.
+
+4. justify-content
+
+Valores: flex-start (por defecto), flex-end, center, space-between, space-around, space-evenly
+Función:
+Distribuye y alinea los elementos hijos a lo largo del eje principal.
+Explicación de valores:
+flex-start: Los elementos se agrupan al inicio del contenedor.
+flex-end: Se agrupan al final del contenedor.
+center: Se centran en el contenedor.
+space-between: Distribuye los elementos dejando espacio uniforme entre ellos, sin espacio en los extremos.
+space-around: Deja espacio uniforme alrededor de cada elemento (lo que implica que los extremos tendrán la mitad de espacio comparado con el que hay entre elementos).
+space-evenly: Distribuye el espacio de forma equitativa entre los elementos y en los extremos.
+
+5. align-items
+
+Valores: stretch (por defecto), flex-start, flex-end, center, baseline
+Función:
+Alinea los elementos hijos a lo largo del eje transversal (perpendicular al eje principal).
+Explicación de valores:
+stretch: Estira los elementos para que ocupen todo el espacio disponible en el eje transversal.
+flex-start: Alinea los elementos al inicio del eje transversal.
+flex-end: Alinea los elementos al final.
+center: Centra los elementos en el eje transversal.
+baseline: Alinea los elementos según su línea base de texto.
+
+6. align-content
+
+Valores: stretch (por defecto), flex-start, flex-end, center, space-between, space-around
+Función:
+Se aplica cuando hay varias líneas (gracias a flex-wrap) y distribuye el espacio entre las filas en el eje transversal.
+Explicación de valores:
+stretch: Estira las líneas para ocupar todo el espacio extra disponible.
+flex-start: Alinea todas las líneas al inicio del contenedor.
+flex-end: Alinea todas las líneas al final.
+center: Centra las líneas en el contenedor.
+space-between: Distribuye el espacio uniformemente entre las líneas, sin espacio en los extremos.
+space-around: Deja espacio uniforme alrededor de cada línea.
+Propiedades de los Elementos Hijos (Flex Items)
+Estas propiedades se aplican a cada uno de los elementos que están dentro del contenedor Flex.
+
+    1. order
+
+Valores: Números enteros (por defecto es 0)
+Función:
+Controla el orden visual de los elementos.
+Explicación:
+Un número mayor posiciona el elemento más tarde en el flujo visual, sin cambiar el orden en el código HTML. Esto es útil para reorganizar elementos sin alterar el marcado.
+    
+    2. flex-grow
+
+Valores: Números (por defecto es 0)
+Función:
+Define la capacidad de un elemento para crecer y ocupar el espacio extra disponible en el contenedor.
+Explicación:
+Un valor mayor hace que el elemento ocupe una mayor porción del espacio sobrante. Si todos los elementos tienen el mismo valor, se distribuirá el espacio extra de manera equitativa.
+    
+    3. flex-shrink
+
+Valores: Números (por defecto es 1)
+Función:
+Define la capacidad de un elemento para encogerse cuando el espacio en el contenedor es insuficiente.
+Explicación:
+Un valor mayor permite que el elemento se reduzca más en comparación con otros elementos. Si se establece en 0, el elemento no se encogerá, lo que podría causar desbordamientos.
+
+    4. flex-basis
+
+Valores: Una longitud (por ejemplo, 200px, 50%) o auto (por defecto es auto)
+Función:
+Especifica el tamaño inicial del elemento antes de que se aplique el crecimiento o encogimiento.
+Explicación:
+Define la base sobre la cual se calculará el espacio extra o el encogimiento. Usar un valor fijo o porcentual puede ayudar a controlar el tamaño de los elementos en el contenedor.
+
+    5. flex (Propiedad abreviada)
+
+Sintaxis: flex: [flex-grow] [flex-shrink] [flex-basis];
+Función:
+Permite definir en una sola línea las propiedades flex-grow, flex-shrink y flex-basis.
+Ejemplo:
+flex: 1; es equivalente a flex: 1 1 0%;
+flex: 2 0 150px; indica que el elemento puede crecer el doble, no se encoge y su tamaño base es de 150px.
+
+    6. align-self
+
+Valores: auto (por defecto), flex-start, flex-end, center, baseline, stretch
+Función:
+Permite anular la alineación establecida por align-items para un elemento en particular.
+Explicación:
+auto: El elemento sigue la alineación definida por el contenedor.
+Otros valores (flex-start, flex-end, etc.) permiten alinear ese elemento de forma diferente a los demás. */
+  
